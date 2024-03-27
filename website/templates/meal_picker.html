@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Meal Picker
+{% endblock %}
+
+{% block content %}
+<br>
+<div style="margin-left: 20px;">
+<label for="tag-select"><p style="font-size: 16px;">Select a tag:</p></label>
+<select id="tag-select">
+    {% for tag in tags %}
+        <option value="{{ tag }}">{{ tag }}</option>
+    {% endfor %}
+</select>
+<button type = "submit" id="get-random-note-btn" class="btn btn-primary">Get Random Recipe</button>
+<div>
+    <label for="randomNote" style="display: inline-block;"><p style="font-size: 16px;">Meal name:</p></label>
+    <div id="randomNote" style="display: inline-block;"></div>
+</div>
+<br>
+<div>
+    <label for="randomNoteRecipe" style="display: inline-block;"><p style="font-size: 16px;">Recipe:</p></label>
+    <div id="randomNoteRecipe" style="display: inline-block;"></div>
+</div>
+
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ url_for('static', filename='meal_picker.js') }}"></script>
+{% endblock %}

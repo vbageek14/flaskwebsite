@@ -14,6 +14,7 @@ def home():
     if request.method == "POST":
         note = request.form.get("note")
         tags = request.form.get("tags")
+        data_recipe = request.form.get("data_recipe")
 
         # Capitalize tags if not already capitalized
         tags = ', '.join(tag.strip().capitalize() for tag in tags.split(','))
@@ -21,7 +22,7 @@ def home():
         if len(note) < 1:
             flash("Note is too short!", category = "error")
         else:
-            new_note = Note(data = note, user_id = current_user.id, tags=tags)
+            new_note = Note(data = note, user_id = current_user.id, tags=tags, data_recipe = data_recipe)
             db.session.add(new_note)
             db.session.commit()
             flash("Note added!", category = "success")
@@ -40,14 +41,19 @@ def delete_note():
     else:
         return jsonify({"message": "Deletion canceled"})
         
-@views.route("/meal-prep", methods = ["GET"])
+@views.route("/meal-picker", methods = ["GET"])
 @login_required
-def meal_prep():
+def meal_picker():
     tags = set()
     notes = Note.query.all()
     for note in notes:
         tags.update(note.tag_names)
-    return render_template('meal_prep.html', user=current_user, tags=tags)
+    return render_template('meal_picker.html', user=current_user, tags=tags)
+
+@views.route("/recipies", methods = ["GET"])
+@login_required
+def recipies():
+    return render_template('recipies.html', user=current_user)
 
 @views.route("/random-note")
 @login_required
@@ -59,7 +65,8 @@ def random_note():
         random_note = Note.query.order_by(func.random()).first()
 
     if random_note:
-        return jsonify({'note': random_note.data})
+        return jsonify({'note': random_note.data,
+                        'recipe': random_note.data_recipe})
     else:
         return jsonify({'note': 'No notes available'})
 

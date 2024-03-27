@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 class Note(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     data = db.Column(db.String(10000))
+    data_recipe = db.Column(db.String(10000))
     date = db.Column(db.DateTime(timezone = True), default = datetime.now(timezone.utc))
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     tags = db.Column(db.String(250))
@@ -20,6 +21,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(150))
     first_name = db.Column(db.String(150))
     notes = db.relationship("Note")
+    
 
 
 
