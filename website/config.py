@@ -1,1 +1,1 @@
-SECRET_KEY = "serrated-mangy-applied-opt-endurable"
+SECRET_KEY = "[REDACTED]"
