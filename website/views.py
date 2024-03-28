@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, jsonify
+from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for
 from .models import User
 from flask_login import login_required, current_user
 from .models import Note
@@ -26,6 +26,7 @@ def home():
             db.session.add(new_note)
             db.session.commit()
             flash("Note added!", category = "success")
+            return redirect(url_for("views.recipies"))
     return render_template("home.html", user = current_user)
 
 @views.route("/delete-note", methods = ["POST"])
@@ -69,4 +70,3 @@ def random_note():
                         'recipe': random_note.data_recipe})
     else:
         return jsonify({'note': 'No notes available'})
-

@@ -3,11 +3,11 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<h1 align = "center"> Enter meal information:</h1>
+<h1 align = "center"> Enter meal information</h1>
 <form method = "POST">
     <div class = "form group" align = "center">
         <label for="note"> Meal name:</label>
-        <textarea name = "note" id="note" class ="form-control" style = "width: 600px;"> </textarea>
+        <input name = "note" id="note" class ="form-control" style = "width: 600px;"> 
     </div>
     <br>
     <div class = "form-group" align = "center">
@@ -17,25 +17,11 @@
     <div class = "form-group" align = "center">
         <label for="tags"> Tags (comma-separated; max 3):</label>
         <input type = "text" name = "tags" id="tags" class ="form-control" style = "width: 600px;"> 
+        <small> Example: Chicken, Healthy, Low Carbs</small>
     </div>
     <div align ="center">
-        <button type ="submit" class="btn btn-primary"> Add Note </button>
+        <button type ="submit" class="btn btn-primary"> Submit </button>
     </div>        
 </form>
 
-<ul class="list-group list-group-flush" id="notes">
-    {% for note in user.notes %}
-    <li class="list-group-item"> {{ note.data }} 
-        <button type ="button" class="close" onClick = "deleteNote({{ note.id }})">
-            <span aria-hidden=""true>&times;</span>
-
-        </button>
-
-    </li>
-    {% endfor %}
-</ul>
-{% endblock %}
-
-{% block javascript %}
-<script src="{{ url_for('static', filename='deleteNote.js') }}"></script>
 {% endblock %}

@@ -12,8 +12,18 @@
             {{ note.data }}
         </div>
         <br>
-        {{ note.data_recipe }} 
+        <pre>{{ note.data_recipe }}</pre>
+
+        <button type ="button" class="close" onClick = "deleteNote({{ note.id }})">
+            <span aria-hidden=""true>&times;</span>
+
+        </button>
+
     </li>   
     {% endfor %}
 </ul>
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ url_for('static', filename='deleteNote.js') }}"></script>
 {% endblock %}
