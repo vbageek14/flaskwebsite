@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", function() {
     var getRandomNoteBtn = document.getElementById("get-random-note-btn");
     var randomNoteDisplay = document.getElementById("randomNote");
     var randomNoteRecipeDisplay = document.getElementById("randomNoteRecipe")
-    
+    var randomNoteRecipeLinkDisplay = document.getElementById("randomNoteRecipeLink")
+
     // Event listener for the button click
     getRandomNoteBtn.addEventListener("click", function() {
         // Get the selected tag
@@ -17,6 +18,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 // Display the random note
                 randomNoteDisplay.textContent = data.note;
                 randomNoteRecipeDisplay.textContent = data.recipe;
+                randomNoteRecipeLinkDisplay.href = data.link
+                randomNoteRecipeLinkDisplay.textContent = data.link
             })
             .catch(error => console.error('Error:', error));
     });

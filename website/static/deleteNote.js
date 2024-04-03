@@ -1,6 +1,6 @@
 function deleteNote(noteId) {
     // Ask for confirmation
-    var confirmation = confirm("Are you sure you want to delete this note?");
+    var confirmation = confirm("Are you sure you want to delete this recipe?");
 
     // If user confirms, proceed with deletion
     if (confirmation) {

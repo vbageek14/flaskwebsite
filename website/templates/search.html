@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+<h2 align = "center">Search Results</h2>
+<br>
+
+    <h5 style="margin-left: 25px;"> You Searched For ... </h5>
+    <p style="margin-left: 25px;"> {{'"'+ searched + '"'}}</p>
+
+    {% for post in posts %}
+
+    <div class="card">
+        <div class="card-header" id="heading{{ post.id }}">
+            <h7 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ post.id }}" aria-expanded="true" aria-controls="collapse{{ post.id }}">
+                    {{ post.data }}
+                </button>
+            </h7>
+        </div>
+
+        <div id="collapse{{ post.id }}" class="collapse" aria-labelledby="heading{{ post.id }}" data-parent="#accordion">
+            <div class="card-body">
+                <h7 Link: </h7>
+                <p> Link: <a href="{{ post.recipe_link }}" target="_blank">{{ post.recipe_link }}</a></p>
+                <br>
+                <pre>{{ post.data_recipe }}</pre>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+   
+
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ url_for('static', filename='deleteNote.js') }}"></script>
+<script src="{{ url_for('static', filename='toggleRecipe.js') }}"></script>
+{% endblock %}

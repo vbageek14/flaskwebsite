@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
 from website import config
+from .webforms import SearchForm
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
@@ -28,6 +29,12 @@ def create_app():
     login_manager = LoginManager()
     login_manager.login_view = "auth.login"
     login_manager.init_app(app)
+
+    # Pass Stuff To Navbar
+    @app.context_processor
+    def base():
+        form = SearchForm()
+        return dict(form=form)
 
     @login_manager.user_loader
     def load_user(id):

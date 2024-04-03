@@ -9,19 +9,28 @@
 <div style="margin-left: 20px;">
 <label for="tag-select"><p style="font-size: 16px;">Select a tag:</p></label>
 <select id="tag-select">
+    <option value = "nothing"></option>
     {% for tag in tags %}
         <option value="{{ tag }}">{{ tag }}</option>
     {% endfor %}
 </select>
 <button type = "submit" id="get-random-note-btn" class="btn btn-primary">Get Random Recipe</button>
-<div>
-    <label for="randomNote" style="display: inline-block;"><p style="font-size: 16px;">Meal name:</p></label>
-    <div id="randomNote" style="display: inline-block;"></div>
-</div>
-<br>
-<div>
-    <label for="randomNoteRecipe" style="display: inline-block;"><p style="font-size: 16px;">Recipe:</p></label>
-    <pre id="randomNoteRecipe" style="display: inline-block;"></pre>
+
+<div id="randomNoteSection" style="display: none;">
+    <div>
+        <label for="randomNote" style="display: inline-block;"><p style="font-size: 16px;">Meal name:</p></label>
+        <div id="randomNote" style="display: inline-block;"></div>
+    </div>
+    <div>
+        <label for = "randomNoteRecipeLink" style = "display: inline-block;"><p style = "font-size: 16px;"> Recipe link:</p></label>
+        <div style="display:inline-block;">
+            <a id="randomNoteRecipeLink" href="#" target="_blank"></a> </a>
+        </div>
+    <div>
+        <label for="randomNoteRecipe" style="display: inline-block;"><p style="font-size: 16px;">Recipe:</p></label>
+        <pre id="randomNoteRecipe" style="display: inline-block;"></pre>
+    </div>
+
 </div>
 
 </div>
@@ -29,4 +38,16 @@
 
 {% block javascript %}
 <script src="{{ url_for('static', filename='meal_picker.js') }}"></script>
+<script> document.addEventListener("DOMContentLoaded", function() {
+    var getRandomNoteBtn = document.getElementById("get-random-note-btn");
+    var randomNoteSection = document.getElementById("randomNoteSection");
+    var tagSelect = document.getElementById("tag-select");
+
+    getRandomNoteBtn.addEventListener("click", function() {
+            if (tagSelect.value !== "nothing") {
+                randomNoteSection.style.display = "block";
+            }
+    });
+});
+</script>
 {% endblock %}
