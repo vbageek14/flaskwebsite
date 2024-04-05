@@ -15,7 +15,7 @@
             id="email" 
             name="email" 
             placeholder="Enter email"
-            style ="width: 600px;"
+            style ="max-width: 600px;"
         />
     </div>
     <div class="form-group"
@@ -26,7 +26,7 @@
             id="firstName" 
             name="firstName" 
             placeholder="Enter first name"
-            style ="width: 600px;"
+            style ="max-width: 600px;"
         />
     </div>
 
@@ -38,7 +38,7 @@
             id="lastName" 
             name="lastName" 
             placeholder="Enter last name"
-            style ="width: 600px;"
+            style ="max-width: 600px;"
         />
     </div>
 
@@ -50,7 +50,7 @@
             id="password1" 
             name="password1" 
             placeholder="Enter password"
-            style ="width: 600px;"
+            style ="max-width: 600px;"
         />
     </div>
 
@@ -62,13 +62,32 @@
         id="password2" 
         name="password2" 
         placeholder="Confirm password"
-        style ="width: 600px;"
+        style ="max-width: 600px;"
     />
 </div>
 
-<br />
 <button type="submit" class ="btn btn-primary">Submit</button>
 
+
+<style>
+    @media only screen and (max-width: 600px) {
+        input[type="email"],
+        input[type="password"], 
+        input[type="text"],
+        label,
+        button                 {
+            display: block;
+            margin: 0 auto;
+            text-align: left;
+    }
+        .navbar-toggler {
+                margin-left: 0;
+            }
+
+
+}
+    
+</style>
 </form>
 
 </div>

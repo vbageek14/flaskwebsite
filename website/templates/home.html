@@ -8,24 +8,35 @@
 <form method = "POST">
     <div class = "form group" align = "center" style="margin-bottom: 15px;">
         <label for="note"> Meal name:</label>
-        <input name = "note" id="note" class ="form-control" style = "width: 600px;"> 
+        <input type = "text" name = "note" id="note" class ="form-control" style="max-width: 600px; margin: 0 auto"> 
     </div>
     <div class = "form-group" align = "center" style="margin-bottom: 15px;">
         <label for="data_recipe"> Recipe:</label>
-        <textarea type = "text" name = "data_recipe" id="data_recipe" class ="form-control" style = "width: 600px;"></textarea>
+        <textarea type="text" name="data_recipe" id="data_recipe" class="form-control" style="max-width: 600px; margin: 0 auto;"></textarea>
     </div>
     <div class = "form-group" align = "center" style="margin-bottom: 15px;">
         <label for="recipe_link"> Link:</label>
-        <input type = "text" name = "recipe_link" id="recipe_link" class ="form-control" style = "width: 600px;"> 
+        <input type = "text" name = "recipe_link" id="recipe_link" class ="form-control" style="max-width: 600px; margin: 0 auto"> 
     </div>
     <div class = "form-group" align = "center" style="margin-bottom: 15px;">
         <label for="tags"> Tags:</label>
-        <input type = "text" name = "tags" id="tags" class ="form-control" style = "width: 600px;"> 
+        <input type = "text" name = "tags" id="tags" class ="form-control" style="max-width: 600px; margin: 0 auto"> 
         <small> Example: Chicken, Healthy, Low Carbs</small>
     </div>
     <div align ="center">
         <button type ="submit" class="btn btn-primary"> Submit </button>
     </div>        
 </form>
+
+<style>
+    @media only screen and (max-width: 600px) {
+        input[type="text"],
+        textarea[type = "text"],
+        textarea {
+            width: calc(100% - 20px);
+            resize: vertical;
+        }
+    }
+</style>
 
 {% endblock %}

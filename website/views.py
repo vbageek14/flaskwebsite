@@ -49,7 +49,7 @@ def delete_note():
 @login_required
 def meal_picker():
     tags = set()
-    notes = Note.query.all()
+    notes = Note.query.filter_by(user_id=current_user.id).all()
     for note in notes:
         tags.update(note.tag_names)
     tags = sorted(tags)
@@ -58,26 +58,24 @@ def meal_picker():
 @views.route("/recipies", methods = ["GET"])
 @login_required
 def recipies():
-    tags = set()
-    notes = Note.query.order_by(Note.data).all()
-
-    return render_template('recipies.html', notes = notes, user=current_user)
+    notes = Note.query.filter_by(user_id=current_user.id).order_by(Note.data).all()
+    return render_template('recipes.html', notes = notes, user=current_user)
 
 @views.route("/random-note")
 @login_required
 def random_note():
     selected_tag = request.args.get('tag')
-    if selected_tag:
-        random_note = Note.query.filter(Note.tags.contains(selected_tag)).order_by(func.random()).first()
+    if selected_tag:   
+        random_note = Note.query.filter(Note.user_id == current_user.id, Note.tags.contains(selected_tag)).order_by(func.random()).first()
     else:
-        random_note = Note.query.order_by(func.random()).first()
+        random_note = Note.query.filter_by(user_id=current_user.id).order_by(func.random()).first()
 
     if random_note:
         return jsonify({'note': random_note.data,
                         'recipe': random_note.data_recipe,
                         'link': random_note.recipe_link})
     else:
-        return jsonify({'note': 'No recipies available'})
+        return jsonify({'note': 'No recipes available'})
     
 @views.route('/search', methods = ["POST"])
 @login_required
@@ -86,7 +84,7 @@ def search():
     posts = Note.query
     if form.validate_on_submit():
         searched = form.searched.data 
-        posts = posts.filter(Note.data_recipe.like("%" + searched + "%"))
+        posts = posts.filter(Note.user_id == current_user.id, Note.data_recipe.like("%" + searched + "%"))
         posts = posts.order_by(Note.data).all()
     else:
         print(form.errors)  # Print validation errors

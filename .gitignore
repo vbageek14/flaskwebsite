@@ -160,4 +160,5 @@ cython_debug/
 #.idea/
 
 #config file
-/config.py
+website/config.py
+instance/database.db

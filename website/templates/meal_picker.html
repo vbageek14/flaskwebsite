@@ -6,31 +6,38 @@
 
 {% block content %}
 <br>
-<div style="margin-left: 20px;">
-<label for="tag-select"><p style="font-size: 16px;">Select a tag:</p></label>
-<select id="tag-select">
-    <option value = "nothing"></option>
-    {% for tag in tags %}
-        <option value="{{ tag }}">{{ tag }}</option>
-    {% endfor %}
-</select>
-<button type = "submit" id="get-random-note-btn" class="btn btn-primary">Get Random Recipe</button>
-
-<div id="randomNoteSection" style="display: none;">
-    <div>
-        <label for="randomNote" style="display: inline-block;"><p style="font-size: 16px;">Meal name:</p></label>
-        <div id="randomNote" style="display: inline-block;"></div>
+<div>
+    <div style="margin-left: 20px; margin-right:20px;">
+        <label for="tag-select"><p style="font-size: 16px;">Select a tag:</p></label>
+        <select id="tag-select">
+            <option value = "nothing"></option>
+            {% for tag in tags %}
+                <option value="{{ tag }}">{{ tag }}</option>
+            {% endfor %}
+        </select>
+        <button type = "submit" id="get-random-note-btn" class="btn btn-primary">Get Random Recipe</button>
     </div>
-    <div>
-        <label for = "randomNoteRecipeLink" style = "display: inline-block;"><p style = "font-size: 16px;"> Recipe link:</p></label>
-        <div style="display:inline-block;">
-            <a id="randomNoteRecipeLink" href="#" target="_blank"></a> </a>
+
+    <div class = "card" style = "margin:10px;">
+        <div id="randomNoteSection" style="display: none;">
+            <div class="card-header text-center vertical-center">
+                <div id="randomNote" style="display: inline-block;"></div>
+            </div>
+
+            <div class="card-body">
+                <div>
+                    <label for = "randomNoteRecipeLink" style = "display: inline-block;"><p style = "font-size: 16px;">Recipe link:</p></label>
+                    <div>
+                        <a id="randomNoteRecipeLink" href="#" target="_blank" style = "white-space: pre-line;"></a>
+                    </div>
+                    <br>
+                    <div>
+                        <pre id="randomNoteRecipe" style="display: inline-block; white-space: pre-line;"></pre>
+                    </div>
+                </div>
+            </div>
         </div>
-    <div>
-        <label for="randomNoteRecipe" style="display: inline-block;"><p style="font-size: 16px;">Recipe:</p></label>
-        <pre id="randomNoteRecipe" style="display: inline-block;"></pre>
     </div>
-
 </div>
 
 </div>
