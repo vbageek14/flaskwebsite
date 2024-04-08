@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
 from website import config
-from .webforms import SearchForm
+from flask_mail import Mail
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
@@ -30,17 +30,26 @@ def create_app():
     login_manager.login_view = "auth.login"
     login_manager.init_app(app)
 
-    # Pass Stuff To Navbar
-    @app.context_processor
-    def base():
-        form = SearchForm()
-        return dict(form=form)
-
     @login_manager.user_loader
     def load_user(id):
         return User.query.get(int(id))
+    
+    app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
+    app.config['MAIL_PORT'] = 587
+    app.config['MAIL_USE_TLS'] = True
+    app.config['MAIL_USERNAME'] = config.EMAIL_USER
+    app.config['MAIL_PASSWORD'] = config.EMAIL_PASS
 
+    mail = Mail(app)
+
+    @app.context_processor
+    def base():
+        from .webforms import SearchForm
+        form = SearchForm()
+        return dict(form=form)
+    
     return app
+
 
 def create_database(app):
     if not path.exists("website/" + DB_NAME):

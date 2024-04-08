@@ -33,7 +33,12 @@ Login
             />
         </div>
     
-    <button type="submit" class ="btn btn-primary">Login</button>
+    <div class="form-group">
+        <button type="submit" class ="btn btn-primary">Login</button>
+        <small class="text-muted ml-2">
+            <a href="{{ url_for('auth.reset_request') }}">Forgot Password?</a>
+        </small>
+    </div>
 
     <style>
         @media only screen and (max-width: 600px) {

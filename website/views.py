@@ -7,7 +7,6 @@ import json
 from sqlalchemy.sql.expression import func
 from .webforms import SearchForm
 
-
 views = Blueprint("views", __name__)
 
 @views.route("/", methods = ["GET", "POST"])
@@ -23,12 +22,12 @@ def home():
         tags = ', '.join(tag.strip().capitalize() for tag in tags.split(','))
 
         if len(note) < 1:
-            flash("Note is too short!", category = "error")
+            flash("Recipe is too short!", category = "error")
         else:
             new_note = Note(data = note, user_id = current_user.id, tags=tags, data_recipe = data_recipe, recipe_link = recipe_link)
             db.session.add(new_note)
             db.session.commit()
-            flash("Note added!", category = "success")
+            flash("Recipe added!", category = "success")
             return redirect(url_for("views.recipies"))
     return render_template("home.html", user = current_user)
 
@@ -84,13 +83,16 @@ def search():
     posts = Note.query
     if form.validate_on_submit():
         searched = form.searched.data 
-        posts = posts.filter(Note.user_id == current_user.id, Note.data_recipe.like("%" + searched + "%"))
+        posts = posts.filter(Note.user_id == current_user.id, 
+                             db.or_(Note.data_recipe.like("%" + searched + "%"),
+                                    Note.tags.like("%" + searched + "%")))
         posts = posts.order_by(Note.data).all()
     else:
-        print(form.errors)  # Print validation errors
+        print(form.errors) 
     return render_template("search.html", form = form, searched = searched, posts = posts, user = current_user)
 
 @views.route("/about", methods = ["GET"])
 @login_required
 def about():
     return render_template("about.html", user = current_user)
+

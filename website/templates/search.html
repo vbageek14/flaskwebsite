@@ -21,8 +21,14 @@
 
         <div id="collapse{{ post.id }}" class="collapse" aria-labelledby="heading{{ post.id }}" data-parent="#accordion">
             <div class="card-body">
-                <h7 Link: </h7>
-                <p> Link: <a href="{{ post.recipe_link }}" target="_blank" style="white-space: pre-line;">{{ post.recipe_link }}</a></p>
+                <p>Recipe link: 
+                    {% if post.recipe_link %}
+                        <a href="{{ post.recipe_link }}" target="_blank" style="white-space: pre-line">{{ post.recipe_link }}</a>
+                    {% else %}
+                        None
+                    {% endif %}
+                </p>   
+                <p style="white-space: pre-line;">Tag(s): {% if post.tags %}{{ post.tags }}{% else %} None{% endif %}</p>
                 <pre style="white-space: pre-line;">{{ post.data_recipe }}</pre>
             </div>
         </div>
