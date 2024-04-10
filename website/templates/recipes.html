@@ -7,11 +7,9 @@
 <h2 align = "center">Recipes</h2>
 <br>
 
-<button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".recipe-collapse" aria-expanded="false" aria-controls="collapseAll" style="display: block; margin-left: 10px;">
+<button class="btn btn-outline-primary btn-sm" type="button" data-toggle="collapse" data-target=".recipe-collapse" aria-expanded="false" aria-controls="collapseAll" style="display: block; margin-left: 10px;">
     Toggle All Recipes
 </button>
-
-
 
 <div class="list-group list-group-flush" id="notes" style = "margin: 10px;">
     {% for note in notes %}
@@ -40,7 +38,9 @@
                         {% endif %}
                     </p>                    
                 <p style="white-space: pre-line;">Tag(s): {% if note.tags %}{{ note.tags }}{% else %} None{% endif %}</p>
-                <pre style="white-space: pre-line;">{{ note.data_recipe }}</pre>
+                <a href="{{ url_for('views.update_tags', id=note.id) }}" class="btn btn-outline-primary btn-sm">Update Tags</a>
+                <br><br>
+                <p>Recipe: <pre style="white-space: pre-line;">{{ note.data_recipe }}</pre></p>
             </div>
         </div>
     </div>

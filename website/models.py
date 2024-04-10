@@ -3,7 +3,7 @@ from flask_login import UserMixin
 from sqlalchemy.sql import func
 from datetime import datetime, timezone
 from itsdangerous import URLSafeTimedSerializer as Serializer
-from website import app, config
+from website import config
 
 SECRET_KEY = config.SECRET_KEY.encode("utf-8")
 

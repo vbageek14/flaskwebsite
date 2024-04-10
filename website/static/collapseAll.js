@@ -14,5 +14,5 @@ function toggleAllRecipes() {
 
 
 // Add an event listener to the "Toggle All Recipes" button
-const toggleButton = document.querySelector('.btn.btn-primary');
+const toggleButton = document.querySelector('.btn.btn-outline-primary');
 toggleButton.addEventListener('click', toggleAllRecipes);

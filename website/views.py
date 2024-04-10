@@ -5,7 +5,7 @@ from .models import Note
 from . import db 
 import json
 from sqlalchemy.sql.expression import func
-from .webforms import SearchForm
+from .webforms import SearchForm, UpdateTagsForm
 
 views = Blueprint("views", __name__)
 
@@ -96,3 +96,24 @@ def search():
 def about():
     return render_template("about.html", user = current_user)
 
+@views.route("/update_tags/<int:id>", methods = ["GET", "POST"])
+@login_required
+def update_tags(id):
+    form = UpdateTagsForm()
+    note = Note.query.get(id)
+    
+    if form.validate_on_submit():
+        if note.user_id == current_user.id:
+            note.tags = form.tags.data
+            db.session.commit()
+            flash("Tags updated successfully", category="success")
+            return redirect(url_for("views.recipies"))
+        else:
+            return jsonify({"message": "Deletion canceled"})
+
+    form.tags.data = note.tags  
+    return render_template("update_tags.html", form=form, note=note, user=current_user)
+
+@views.route("/disclaimer", methods = ["GET"])
+def disclaimer():
+    return render_template("disclaimer.html", user = current_user)
