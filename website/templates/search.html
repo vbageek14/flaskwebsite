@@ -5,36 +5,41 @@
 <h2 align = "center">Search Results</h2>
 <br>
 
-    <h5 style="margin-left: 20px;"> You Searched For ... </h5>
-    <p style="margin-left: 20px;"> {{'"'+ searched + '"'}}</p>
+    <h5> You Searched For ... </h5>
+    <p> {{'"'+ searched + '"'}}</p>
 
-    {% for post in posts %}
+   
 
-    <div class="card" style = "margin-left: 10px; margin-right:10px;">
-        <div class="card-header" id= "heading{{ post.id }}">
-            <h7 class="mb-0">
-                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ post.id }}" aria-expanded="true" aria-controls="collapse{{ post.id }}">
-                    {{ post.data }}
-                </button>
-            </h7>
-        </div>
+    <form method = "POST">
+        {{ form.hidden_tag() }}
+         {% for post in posts %}
 
-        <div id="collapse{{ post.id }}" class="collapse" aria-labelledby="heading{{ post.id }}" data-parent="#accordion">
-            <div class="card-body">
-                <p>Recipe link: 
-                    {% if post.recipe_link %}
-                        <a href="{{ post.recipe_link }}" target="_blank" style="white-space: pre-line">{{ post.recipe_link }}</a>
-                    {% else %}
-                        None
-                    {% endif %}
-                </p>   
-                <p style="white-space: pre-line;">Tag(s): {% if post.tags %}{{ post.tags }}{% else %} None{% endif %}</p>
-                <p> Recipe: </p><pre style="white-space: pre-line;">{{ post.data_recipe }}</pre>
+            <div class="card">
+                <div class="card-header" id= "heading{{ post.id }}">
+                    <h7 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ post.id }}" aria-expanded="true" aria-controls="collapse{{ post.id }}">
+                            {{ post.recipe_name }}
+                        </button>
+                    </h7>
+                </div>
+        
+                <div id="collapse{{ post.id }}" class="collapse" aria-labelledby="heading{{ post.id }}" data-parent="#accordion">
+                    <div class="card-body">
+                        <p>Recipe link: 
+                            {% if post.recipe_link %}
+                                <a href="{{ post.recipe_link }}" target="_blank" style="white-space: pre-line">{{ post.recipe_link }}</a>
+                            {% else %}
+                                None
+                            {% endif %}
+                        </p>   
+                        <p style="white-space: pre-line;">Tag(s): {% if post.tags %}{{ post.tags }}{% else %} None{% endif %}</p>
+                        <p> Recipe: </p><pre style="white-space: pre-line;">{{ post.recipe }}</pre>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-
-    {% endfor %}
+    
+        {% endfor %}
+    </form>
    
 
 {% endblock %}

@@ -4,11 +4,12 @@ function deleteNote(noteId) {
 
     // If user confirms, proceed with deletion
     if (confirmation) {
-        fetch("/delete-note", {
+        fetch("/delete-recipe", {
             method: "POST",
             body: JSON.stringify({ noteId: noteId, confirmation: "yes" }),
             headers: {
                 "Content-Type": "application/json",
+                "X-CSRFToken": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             },
         })
             .then((_res) => {

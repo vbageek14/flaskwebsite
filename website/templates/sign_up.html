@@ -6,6 +6,7 @@
 <div class="container">
 <form method = "POST">
     <br>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
     <h3 align="center">Sign Up</h3>
     <div class="form-group"
         <label for="email"> Email Address </label>

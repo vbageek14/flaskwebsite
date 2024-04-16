@@ -7,17 +7,17 @@
 <h2 align = "center">Recipes</h2>
 <br>
 
-<button class="btn btn-outline-primary btn-sm" type="button" data-toggle="collapse" data-target=".recipe-collapse" aria-expanded="false" aria-controls="collapseAll" style="display: block; margin-left: 10px;">
+<button class="btn btn-outline-primary btn-sm" type="button" data-toggle="collapse" data-target=".recipe-collapse" aria-expanded="false" aria-controls="collapseAll" style="display: block;">
     Toggle All Recipes
 </button>
-
-<div class="list-group list-group-flush" id="notes" style = "margin: 10px;">
+<br>
+<div class="list-group list-group-flush" id="notes">
     {% for note in notes %}
     <div class="card">
         <div class="card-header" id="heading{{ note.id }}">
             <h7 class="mb-0">
                 <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ note.id }}" aria-expanded="true" aria-controls="collapse{{ note.id }}">
-                    {{ note.data }}
+                    {{ note.recipe_name }}
                 </button>
             </h7>
 
@@ -27,9 +27,9 @@
             </button>
         </div>
 
-        <div id="collapse{{ note.id }}" class="collapse" aria-labelledby="heading{{ note.id }}" data-parent="#accordion">
+        <div id="collapse{{ note.id }}" class="recipe-section collapse" aria-labelledby="heading{{ note.id }}" data-parent="#accordion">
             <div class="card-body">
-                <h7 Link: </h7>
+                <h7> Link: </h7>
                     <p>Recipe link: 
                         {% if note.recipe_link %}
                             <a href="{{ note.recipe_link }}" target="_blank" style="white-space: pre-line">{{ note.recipe_link }}</a>
@@ -40,7 +40,7 @@
                 <p style="white-space: pre-line;">Tag(s): {% if note.tags %}{{ note.tags }}{% else %} None{% endif %}</p>
                 <a href="{{ url_for('views.update_tags', id=note.id) }}" class="btn btn-outline-primary btn-sm">Update Tags</a>
                 <br><br>
-                <p>Recipe: <pre style="white-space: pre-line;">{{ note.data_recipe }}</pre></p>
+                <p>Recipe: <pre style="white-space: pre-line;">{{ note.recipe }}</pre></p>
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
 function toggleAllRecipes() {
-    const recipeSections = document.querySelectorAll('.collapse');
+    const recipeSections = document.querySelectorAll('.recipe-section');
     const firstSection = recipeSections[0];
     const isCollapsed = firstSection.classList.contains('show');
     

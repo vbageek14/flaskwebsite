@@ -7,9 +7,10 @@ from flask_login import login_user, login_required, logout_user, current_user
 from flask_mail import Message
 from .webforms import RequestResetForm, ResetPasswordForm
 
-
+# Define the auth blueprint with the Flask app
 auth = Blueprint("auth", __name__)
 
+# Define route for handling login functionality
 @auth.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -30,13 +31,14 @@ def login():
 
     return render_template("login.html", user = current_user)
 
+# Define route  for handling logging out of the website
 @auth.route("/logout")
 @login_required
 def logout():
     logout_user()
     return redirect(url_for("auth.login"))
 
-
+# Define route  for handling sign up functionality
 @auth.route("/sign-up", methods=["GET", "POST"])
 def sign_up():
     if request.method == "POST":
@@ -61,6 +63,7 @@ def sign_up():
         elif len(password1) < 7:
             flash('Password must be at least 7 characters.', category='error')
         else:
+            # commits the new recipe to the database and hashes the password using pbkdf2:sha256
             new_user = User(email = email, first_name = first_name, last_name = last_name, password = generate_password_hash(password1, method = "pbkdf2:sha256"))
             db.session.add(new_user)
             db.session.commit()
@@ -70,8 +73,13 @@ def sign_up():
 
     return render_template("sign_up.html", user = current_user)
 
+# Sends email to the user with link to reset their password
 def send_reset_email(user):
+
+    # Generates password reset token
     token = user.get_reset_token()
+
+    # Create an email message for password reset
     msg = Message('Password Reset Request',
                   sender='noreply@demo.com',
                   recipients=[user.email])
@@ -80,9 +88,12 @@ def send_reset_email(user):
 
 If you did not make this request then simply ignore this email and no changes will be made.
 '''
+    
+    # Accesses the Flask-Mail extension instance from the application
     mail = current_app.extensions['mail']
     mail.send(msg)
 
+# Defines route for handling the password reset functionality (requests user for their email and sends the password reset form)
 @auth.route("/reset_password", methods=['GET', 'POST'])
 def reset_request():
     if current_user.is_authenticated:
@@ -96,7 +107,7 @@ def reset_request():
         return redirect(url_for('auth.login'))
     return render_template('reset_request.html', title='Reset Password', form=form, user = current_user)
 
-
+# Defines route for handling password reset functionality (verifies the password reset token and requests user to input new password)
 @auth.route("/reset_password/<token>", methods=['GET', 'POST'])
 def reset_token(token):
     if current_user.is_authenticated:
@@ -107,6 +118,7 @@ def reset_token(token):
         return redirect(url_for('auth.reset_request'))
     form = ResetPasswordForm()
     if form.validate_on_submit():
+        # Commits user's new password to the database and hashes it using pbkdf2:sha256
         hashed_password = generate_password_hash(form.password.data, method = "pbkdf2:sha256")
         user.password = hashed_password
         db.session.commit()

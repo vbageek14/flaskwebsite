@@ -4,15 +4,17 @@
 
 {% block content %}
 <br>
-<h2 align = "center"> Enter meal information</h2>
+<h2 align = "center"> Enter recipe information</h2>
+<br>
 <form method = "POST">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
     <div class = "form group" align = "center" style="margin-bottom: 15px;">
-        <label for="note"> Meal name:</label>
-        <input type = "text" name = "note" id="note" class ="form-control" style="max-width: 600px; margin: 0 auto"> 
+        <label for="recipe_name"> Recipe name:</label>
+        <input type = "text" name = "recipe_name" id="recipe_name" class ="form-control" style="max-width: 600px; margin: 0 auto"> 
     </div>
     <div class = "form-group" align = "center" style="margin-bottom: 15px;">
-        <label for="data_recipe"> Recipe:</label>
-        <textarea type="text" name="data_recipe" id="data_recipe" class="form-control" style="max-width: 600px; margin: 0 auto;"></textarea>
+        <label for="recipe"> Recipe:</label>
+        <textarea type="text" name="recipe" id="recipe" class="form-control" style="max-width: 600px; margin: 0 auto;"></textarea>
     </div>
     <div class = "form-group" align = "center" style="margin-bottom: 15px;">
         <label for="recipe_link"> Link:</label>
