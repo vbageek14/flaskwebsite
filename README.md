@@ -1,2 +1,17 @@
-# flaskwebsite
-This is my personal project for personal use. It's a simple website built using Flask, HTML, SQLAlchemy/SQLite and a little bit of JavaScript. Its main purpose is store a repository of meal recipes and pick a recipe randomly based on tags. Whether you meal prep or not, this site can be used to store favourite recipes and, when deciding on what to cook, give ideas randomly based on the tags submitted along with the recipe (i.e. healthy, quick, or vegetarian).
+# Flask Website
+
+This is a personal project built with Flask, HTML, SQLAlchemy/SQLite, and a touch of JavaScript. It's a simple website designed for personal use. The main functionality is to serve as a repository for meal recipes and allow users to pick a recipe randomly based on specified tags.
+
+## Features
+
+- **Recipe Repository:** Store and manage a collection of meal recipes.
+- **Random Recipe Picker:** Pick a recipe randomly based on specified tags (e.g., healthy, quick, vegetarian).
+- **Personal Use:** Designed for individual use, whether for meal prepping or simply storing favorite recipes.
+
+## Requirements
+
+- **Python:** Version 3.10.5 or higher.
+- **Flask:** Python web framework for building the backend.
+- **HTML/CSS:** Frontend development for the user interface.
+- **SQLite/SQLAlchemy:** Database management for storing recipe data.
+- **JavaScript:** Provides interactivity and enhances user experience.
