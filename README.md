@@ -17,4 +17,5 @@ This is a personal project built with Flask, HTML, SQLAlchemy/SQLite, and a touc
 - **JavaScript:** Provides interactivity and enhances user experience.
 
 ### Website Screenshots
+<!-- Random recipe page -->
 ![Homepage](/website_screenshots/get_random_recipe_page.png)
