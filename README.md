@@ -10,7 +10,7 @@ This is a personal project built with Flask, HTML, SQLAlchemy/SQLite, and a touc
 
 ## Requirements
 
-- **Python:** Version 3.10.5 or higher.
+- **Python 3**
 - **Flask:** Python web framework for building the backend.
 - **HTML/CSS:** Frontend development for the user interface.
 - **SQLite/SQLAlchemy:** Database management for storing recipe data.
