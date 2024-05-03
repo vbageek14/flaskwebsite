@@ -16,6 +16,10 @@ This is a personal project built with Flask, HTML, SQLAlchemy/SQLite, and a touc
 - **SQLite/SQLAlchemy:** Database management for storing recipe data.
 - **JavaScript:** Provides interactivity and enhances user experience.
 
-### Website Screenshots
-<!-- Random recipe page -->
-![Homepage](/website_screenshots/get_random_recipe_page.png)
+## Website Screenshots
+
+![login_page](/website_screenshots/login_page.png)
+![homepage](/website_screenshots/homepage.png)
+![get_random_recipe_page](/website_screenshots/get_random_recipe_page.png)
+![recipies_page](/website_screenshots/recipes_page.png)
+![search_page](/website_screenshots/search_page.png)
