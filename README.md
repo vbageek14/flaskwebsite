@@ -15,3 +15,6 @@ This is a personal project built with Flask, HTML, SQLAlchemy/SQLite, and a touc
 - **HTML/CSS:** Frontend development for the user interface.
 - **SQLite/SQLAlchemy:** Database management for storing recipe data.
 - **JavaScript:** Provides interactivity and enhances user experience.
+
+### Website Screenshots
+![Homepage](/website_screenshots/get_random_recipe_page.png)
