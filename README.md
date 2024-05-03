@@ -18,8 +18,17 @@ This is a personal project built with Flask, HTML, SQLAlchemy/SQLite, and a touc
 
 ## Website Screenshots
 
+### Login Page
 ![login_page](/website_screenshots/login_page.png)
+
+### Homepage
 ![homepage](/website_screenshots/homepage.png)
+
+### Get Random Recipe Page
 ![get_random_recipe_page](/website_screenshots/get_random_recipe_page.png)
-![recipies_page](/website_screenshots/recipes_page.png)
+
+### Recipes Page
+![recipes_page](/website_screenshots/recipes_page.png)
+
+### Search Page
 ![search_page](/website_screenshots/search_page.png)
